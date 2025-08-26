@@ -2,14 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Clients } from './feature/clients/clients'
+import { RouterApp } from './routers/routersApp'
 
 function App() {
   return (
     <>
-    <div className='container p-5'>
-     <Clients/>
-    </div>
+      <RouterApp/>
     </>
   )
 }
