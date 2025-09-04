@@ -6,16 +6,22 @@ export function Login() {
 
     const navigate = useNavigate()
 
-    const [nombre, setNombre] = useState("")
+    const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const userStorage = JSON.parse(localStorage.getItem('users'))
-        if (nombre == userStorage.email && password == userStorage.password) {
-            navigate('/dashboard')
-        } else {
+        let siExiste = false;
+        userStorage.forEach(element => {
+            if (username == element.email && password == element.password) {
+                navigate('/dashboard/users')
+                siExiste = true
+            }
+        });
+
+        if (!siExiste) {
             alert("Credenciales incorrectas")
         }
     }
@@ -29,11 +35,11 @@ export function Login() {
         <>
             <Nabvar />
 
-            <h2>Formulario de registro deL estudiante {nombre}</h2>
+            <h2>Login</h2>
             <form className="card p-3" onSubmit={handleSubmit} >
                 <div>
                     <label>Usuario de acceso
-                        <input onChange={(e) => setNombre(e.target.value)} className="form-control" type="email" name="nombre" />
+                        <input onChange={(e) => setUserName(e.target.value)} className="form-control" type="email" name="nombre" />
                     </label>
                 </div>
                 <div>

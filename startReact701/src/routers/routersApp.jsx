@@ -5,9 +5,9 @@ import { ProductsHome } from "../feature/landing/pages/productsHome/productsHome
 import { Login } from "../feature/landing/pages/auth/login"
 import { Register } from "../feature/landing/pages/auth/register"
 import { Dashboard } from "../feature/dashboard/dashboard"
-import { Inicio } from "../feature/dashboard/inicio/inicio"
 import { Productos } from "../feature/dashboard/productos/productos"
 import { Servicios } from "../feature/dashboard/servicios/servicios"
+import { Users } from "../feature/dashboard/users/users"
 
 export const RouterApp = () => {
 
@@ -22,7 +22,7 @@ export const RouterApp = () => {
               
                 {/* Rutas para el dashboard */}
                 <Route path="/dashboard" element={ <Dashboard/> } >
-                    <Route path="inicio" element={ <Inicio/> } />
+                    <Route path="users" element={ <Users/> } />
                     <Route path="productos" element={ <Productos/> } />
                     <Route path="servicios" element={ <Servicios/> } />
 

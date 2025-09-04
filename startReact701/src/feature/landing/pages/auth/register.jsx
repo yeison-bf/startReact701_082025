@@ -29,7 +29,10 @@ export const Register = () => {
   const handdleSubtmi = (e) => {
     e.preventDefault()
 
-    localStorage.setItem('users', JSON.stringify(formData))
+    const listUser = JSON.parse(localStorage.getItem('users')) || []
+
+    listUser.push(formData)
+    localStorage.setItem('users', JSON.stringify(listUser))
     alert("Registro exitoso")
 
     setFormData({
@@ -83,7 +86,7 @@ export const Register = () => {
                 <input name='password' value={formData.password} onChange={handdleChange} type={showPassword ? 'text' : 'password'} className="form-control" />
               </div>
               <div className="col-2">
-                  <button type='button' onClick={()=>setShowPassword(!showPassword)} className='btn btn-success'> {showPassword ? ( <FaEye />)  : (<FaEyeSlash />)}</button>
+                  <button type='button' onClick={()=>setShowPassword(!showPassword)} className='btn btn-success'> {showPassword ? ( <FaEye className='text-primary' />)  : (<FaEyeSlash />)}</button>
               </div>
             </div>
           </div>

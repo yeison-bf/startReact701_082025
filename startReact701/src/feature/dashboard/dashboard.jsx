@@ -6,14 +6,13 @@ export const Dashboard = () => {
   const navigate = useNavigate()
 
   const handdleLogout  = () =>{
-    localStorage.clear()
     navigate('/login')
   }
   return (
     <div className='contenedorDashboard'>
       <div className="sidebar">
         <ul>
-          <li><Link to="/dashboard/inicio">Inicio</Link></li>
+          <li><Link to="/dashboard/users">Inicio</Link></li>
           <li><Link to="/dashboard/productos">Productos</Link></li>
           <li><Link to="/dashboard/servicios">Servicios</Link></li>
           <li><a onClick={handdleLogout }>Salir</a></li>
