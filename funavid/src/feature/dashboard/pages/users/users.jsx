@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { UsersServices } from './services/users.services'
+import { useNavigate } from 'react-router-dom'
 
 
 export const Users = () => {
+
+    // Invocamos al metodo useNavigate()
+    const navigate = useNavigate()
 
     // Utilizamos el useEffect para ejecutar la función apenas llame al componente
     useEffect(() => {
@@ -24,11 +28,29 @@ export const Users = () => {
         }
     }
 
+    // Función para eliminar datos
+    const handdleRemove = async (id) =>{
+        try {
+            const response = await UsersServices.deleteUser(id)
+            if(response.data.success){
+                fetchUsers()
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    // Función para dirigir al formulario de registro
+    const handdleAddUsers = () =>{
+        navigate('/dashboard/users/create')
+    }
+
     return (
         <>
             <div className="mb-6">
                 <h1 className="text-2xl font-semibold text-gray-800 mb-2">Usuarios</h1>
                 <p className="text-gray-600">Listado general de usuarios del sistema</p>
+                <button onClick={handdleAddUsers} className='button bg-blue-500 text-white-500 p-3 '>Agregar nuevo usuario</button>
             </div>
 
             {/* Content Area */}
@@ -56,7 +78,10 @@ export const Users = () => {
                                     <td class="px-6 py-4">{element.firstName} {element.lastName}</td>
                                     <td class="px-6 py-4">{element.email}</td>
                                     <td class="px-6 py-4">{element.isActive ? (<mall className="text-black-600 p-1 bg-green-300 rounded ">Activo</mall>) : (<mall className="text-black-500 p-1 bg-red-500 rounded ">Inctivo</mall>)}</td>
-                                    <td class="px-6 py-4"><a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></td>
+                                    <td class="px-6 py-4">
+                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar </a>
+                                    <a onClick={(e)=>handdleRemove(element.id)} class="font-medium text-red-600 dark:text-red-500 hover:underline ml-1"> Remover</a>
+                                    </td>
                                 </tr>
                             ))}
 
