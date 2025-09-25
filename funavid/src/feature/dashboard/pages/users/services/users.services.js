@@ -6,6 +6,7 @@ export const UsersServices = {
     async postUser(data) {
         try {
             const response = await axios.post(server + '/users', data)
+            return response
         } catch (error) {
             console.error(error)
         }
